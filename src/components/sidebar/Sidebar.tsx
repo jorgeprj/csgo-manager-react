@@ -1,37 +1,62 @@
-import '../../styles/Sidebar.css';
-
 import { useState } from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-import { FaChevronLeft, FaChevronRight, FaHouse, FaEnvelope, FaFilePen, FaMagnifyingGlass ,FaLandmark, FaChartLine, FaTrophy, FaUserTie, FaCalendarDays } from 'react-icons/fa6' 
+import { FaChevronLeft, FaChevronRight, FaHouse, FaMagnifyingGlass, FaUserTie } from 'react-icons/fa6' 
+
+import '../../styles/Sidebar.css';
 
 const Sidebar: React.FC = () => {
-    const [activeIcon, setActiveIcon] = useState<string>('FaHouse');
-
     const links = [
         { path: '/home', icon: FaHouse },
+        { path: '/scouting', icon: FaMagnifyingGlass },
+        { path: '/profile', icon: FaUserTie },
+        /*
         { path: '/inbox', icon: FaEnvelope },
         { path: '/tactics', icon: FaFilePen },
-        { path: '/scouting', icon: FaMagnifyingGlass },
         { path: '/stats', icon: FaChartLine },
-        { path: '/finances', icon: FaLandmark },
         { path: '/achievements', icon: FaTrophy },
+        { path: '/finances', icon: FaLandmark },
         { path: '/calendar', icon: FaCalendarDays },
-        { path: '/profile', icon: FaUserTie },
+        */
     ];
+    const [activeIcon, setActiveIcon] = useState<string>('FaHouse');
 
     const handleIconClick = (iconName: string) => {
         setActiveIcon(iconName); 
     };
+
+    function getNextPage(): string {
+        const { pathname } = useLocation();
+        const index = links.findIndex(link => link.path === pathname);
+        if (index === links.length - 1) {
+            return '/home';
+        }
+        return links[index + 1].path;
+    }
+
+    function getPrevPage(): string {
+        const { pathname } = useLocation();
+        const index = links.findIndex(link => link.path === pathname);
+        if (index === 0) {
+            return links[links.length - 1].path;
+        }
+        return links[index - 1].path;
+    }
+
+
 
     return (
         <div>
             <nav className='sidebar'>
                 <div className='menu'>
                     <div className='menu-header'>
-                        <button><FaChevronLeft/></button>
-                        <button ><FaChevronRight/></button>
+                        <Link to={getPrevPage()}>
+                            <button><FaChevronLeft/></button>
+                        </Link>
+                        <Link to={getNextPage()}>
+                            <button onClick={() => handleIconClick('FaMagnifyingGlass')}><FaChevronRight/></button>
+                        </Link>
                     </div>
                     <ul className='menu-links'>
                         {links.map((link, index) => (
