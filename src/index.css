@@ -31,11 +31,17 @@
   --orange: #F29445;
   --orange-low: #EBB15B
   --star-color: #E2AA58;
+  --divider: rgba(255, 255, 255, 0.05);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   display: flex;
-  margin: 0;
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--background-color);
