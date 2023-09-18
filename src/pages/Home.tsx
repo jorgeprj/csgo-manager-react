@@ -1,9 +1,9 @@
-import '../styles/Home.css'
+import MatchCard from "../components/match-card/MatchCard"
 
 const Home = () => {
 	return (
 		<div className="main">
-			<h1>Home</h1>
+			<MatchCard/>
 		</div>
 	)
 }

@@ -15,12 +15,12 @@
 
 :root{
   --primary-color: #4121E6;
-  --background-color: #111115;
-  --background-color-dark: #0E0E10;
+  --background-color: #151515;
+  --background-color-dark: rgba(0,0,0,0.2);;
   --text-color-high: rgba(255, 255, 255, 0.87);
   --text-color-medium: rgba(255, 255, 255, 0.65);
   --text-color-low: rgba(255, 255, 255, 0.30);
-  --shadow-color: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgba(0,0,0,0.2);
   --green-high: #23EEA7;
   --green-medium: #BCFE2F;
   --green-low: #78DEA3;
@@ -74,4 +74,13 @@ p{
   font-weight: 400;
   color: var(--text-color-medium);
   margin: 0;
+}
+
+.main{
+  display: flex;
+  padding: 2em;
+  margin-top: 130px;
+  margin-left: 80px;
+  width: calc(100vw - 80px);
+  height: calc(100% - 130px);
 }
